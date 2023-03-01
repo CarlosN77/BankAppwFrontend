@@ -1,15 +1,18 @@
 package com.projeto.bankapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clients")
 public class Clientcontroller {
 
     @Autowired
@@ -17,13 +20,33 @@ public class Clientcontroller {
     @Autowired
     Clientservice clientservice;
 
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(yyyy-mm-dd);
     @Autowired
     public Clientcontroller(Clientservice clientservice){
         this.clientservice = clientservice;
     }
 
-    public void criarCliente( ) {
-        clientservice.criarNovoCliente(266, "Carlos", "123","123",LocalDate.of(2004, 10, 12), 1234,1234,"a","a");
+    @RequestMapping("/register")
+    public ModelAndView registerForm() {
+        ModelAndView modelAndView = new ModelAndView("register");
+        return modelAndView;
+    }
+
+    @PostMapping("/criarNovoCliente")
+    public ModelAndView criarNovoCliente(
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dataNascimento,
+            @RequestParam String segundonome,
+            @RequestParam int telefone,
+            @RequestParam String email,
+            @RequestParam String primeironome,
+            @RequestParam int nif,
+            @RequestParam String profissao,
+            @RequestParam String password,
+            @RequestParam int telemovel) {
+
+        clientservice.criarNovoCliente(nif, primeironome, password, segundonome, dataNascimento, telefone, telemovel, email,
+                profissao);
+        return registerForm();
     }
 
     @GetMapping
@@ -32,7 +55,7 @@ public class Clientcontroller {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliententity> getClientById(@PathVariable Long id) {
+    public ResponseEntity<Cliententity> getClientById(@PathVariable Integer id) {
         Cliententity client = clientRepository.findById(id).orElse(null);
         if (client == null) {
             return ResponseEntity.notFound().build();
@@ -49,11 +72,11 @@ public class Clientcontroller {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteClient(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteClient(@PathVariable Integer id) {
         if (!clientRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
-        clientRepository.deleteById(id);
+        clientRepository.deleteById(Integer.valueOf(id));
         return ResponseEntity.noContent().build();
     }
 

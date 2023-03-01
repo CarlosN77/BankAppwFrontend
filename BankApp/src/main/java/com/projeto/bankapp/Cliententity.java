@@ -28,9 +28,9 @@ public class Cliententity {
     @Column(nullable = false)
     private String segundonome;
 
-    @JoinColumn(nullable = false)
+    /*@JoinColumn(nullable = false)
     @ManyToOne
-    private Contaentity conta;
+    private Contaentity conta;*/
 
 
     @Column(nullable = false)
@@ -39,8 +39,8 @@ public class Cliententity {
     @Column(nullable = false)
     private int telemovel;
 
-    @Column(nullable = false)
-    private LocalDate datadenascimento;
+    @Column(nullable = true)
+    private LocalDate datanascimento;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -51,14 +51,8 @@ public class Cliententity {
     @Column(nullable = false)
     private String password;
 
-    @Override
-    public String toString() {
-        return "ClientEntity{" +
-                ", name='" + primeironome + segundonome + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
+
+
 
 
 

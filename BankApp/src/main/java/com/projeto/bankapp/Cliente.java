@@ -18,7 +18,7 @@ public class Cliente {
     private String senha;
     private String primeironome;
     private String segundonome;
-    private Conta conta;
+   // private Conta conta;
     private LocalDate datadenascimento;
     private int telefone;
     private int telemovel;

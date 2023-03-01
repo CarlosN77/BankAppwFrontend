@@ -12,21 +12,21 @@ public class Clientservice {
         this.clientRepository = clientRepository;
     }
 
-    public void criarNovoCliente(int nif, String primeironome,String Segundonome, String senha,
-                                        LocalDate dataNascimento, int telefone, int telemovel, String email, String profissao) {
+    public void criarNovoCliente(int nif, String primeironome,String segundonome, String password,
+                                 LocalDate dataNascimento, int telefone, int telemovel, String email, String profissao) {
+        System.out.println("Received request to create new client: " + primeironome + " " + segundonome);
         Cliententity client = new Cliententity();
 
-        client.setNif(266150004);
-        client.setPrimeironome("Carlos");
-        client.setPassword("1234");
-        client.setDatadenascimento(LocalDate.of(2000, 10, 12));
-        client.setSegundonome("Neves");
-        client.setEmail("aa");
-        client.setProfissao("aa");
-        client.setTelemovel(912);
-        client.setTelefone(978);
+        client.setNif(nif);
+        client.setPrimeironome(primeironome);
+        client.setPassword(password);
+        client.setDatanascimento(dataNascimento);
+        client.setSegundonome(segundonome);
+        client.setEmail(email);
+        client.setProfissao(profissao);
+        client.setTelemovel(telemovel);
+        client.setTelefone(telefone);
         clientRepository.save(client);
-
     }
 }
 

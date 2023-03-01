@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Register New Client</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        input {
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Register New Client</h1>
+<form method="POST" action="/criarNovoCliente">
+    <input type="text" name="nif" placeholder="NIF">
+    <input type="text" name="primeironome" placeholder="First Name">
+    <input type="text" name="segundonome" placeholder="Last Name">
+    <input type="password" name="password" placeholder="Password">
+    <input type="date" name="datanascimento" placeholder="Date of Birth">
+    <input type="text" name="telefone" placeholder="Phone Number">
+    <input type="text" name="telemovel" placeholder="Mobile Number">
+    <input type="text" name="email" placeholder="Email">
+    <input type="text" name="profissao" placeholder="Profession">
+    <button type="submit">Register</button>
+</form>
+</body>
+</html>
+
+
+
+

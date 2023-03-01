@@ -5,10 +5,10 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ClientRepository extends JpaRepository<Cliententity, Long> {
+public interface ClientRepository extends JpaRepository<Cliententity, Integer> {
 
 
 
-    Cliententity findEntityByNifAndPassword(long nif, String password);
+    Cliententity findEntityByNifAndPassword(int nif, String password);
 
 }
