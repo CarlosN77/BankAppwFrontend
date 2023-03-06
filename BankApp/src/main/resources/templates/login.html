@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login Page</title>
     <style>
@@ -11,7 +11,7 @@
         }
 
         header {
-            background-color: midnightblue;
+            background-color: DarkSlateBlue;
             color: white;
             padding: 20px;
             text-align: center;
@@ -42,7 +42,7 @@
         }
 
         input[type=submit] {
-            background-color: darkorange;
+            background-color: darksalmon;
             color: white;
             padding: 10px 20px;
             text-decoration: none;
@@ -55,11 +55,11 @@
         }
 
         input[type=submit]:hover {
-            background-color: orange;
+            background-color: salmon;
         }
 
         footer {
-            background-color: midnightblue;
+            background-color: DarkSlateBlue;
             color: white;
             padding: 10px;
             text-align: center;
@@ -75,12 +75,13 @@
 </header>
 <main>
     <h2>Login</h2>
-    <form method="post" action="/login">
-        <label for="nif">NIF:</label><br>
+    <form th:action="@{/login}" th:object="${cliente}" th:method="post">
+    <label for="nif">NIF:</label><br>
         <input type="text" id="nif" name="nif" required><br>
         <label for="password">Password:</label><br>
         <input type="password" id="password" name="password" required><br><br>
         <input type="submit" value="Submit">
+
     </form>
 </main>
 <footer>

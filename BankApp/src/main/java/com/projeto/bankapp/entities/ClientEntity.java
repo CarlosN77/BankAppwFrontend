@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
@@ -15,7 +16,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
-public class ClientEntity {
+public class ClientEntity implements Serializable {
 
     @Id
     @Column(nullable = false)
@@ -27,9 +28,9 @@ public class ClientEntity {
     @Column(nullable = false)
     private String segundonome;
 
-    /*@JoinColumn(nullable = false)
+    @JoinColumn(nullable = false)
     @ManyToOne
-    private Contaentity conta;*/
+    private AccountEntity conta;
 
 
     @Column(nullable = false)

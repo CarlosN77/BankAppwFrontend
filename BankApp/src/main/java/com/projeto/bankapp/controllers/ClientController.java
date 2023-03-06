@@ -3,17 +3,20 @@ package com.projeto.bankapp.controllers;
 import com.projeto.bankapp.entities.ClientEntity;
 import com.projeto.bankapp.repositories.ClientRepository;
 import com.projeto.bankapp.services.Clientservice;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.boot.Banner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.time.LocalDate;
+import javax.naming.AuthenticationException;
 import java.util.List;
 
-@RestController
+@Controller
 public class ClientController {
 
     private final ClientRepository clientRepository;
@@ -53,8 +56,39 @@ public class ClientController {
 
         clientservice.criarNovoCliente(nif, primeironome, segundonome,password , datanascimento, telefone, telemovel, email,
                 profissao);
-        return afterregisterForm();
+        return new ModelAndView("login");
     }
+
+    @PostMapping("/login")
+    public String login(
+            @RequestParam Integer nif,
+            @RequestParam String password,
+            HttpSession session, Model model) throws AuthenticationException {
+        ClientEntity cliente = clientservice.login(nif, password);
+        if (cliente == null) {
+            throw new AuthenticationException("Invalid login credentials");
+        }
+        else {
+            System.out.println("Cliente logged in: " + cliente);
+            session.setAttribute("cliente", cliente);
+            model.addAttribute("cliente", cliente);
+            return "redirect:/afterlogin";
+        }
+    }
+
+
+    @GetMapping("/afterlogin")
+    public String showafterlogin(Model model, HttpSession session) {
+        ClientEntity cliente = (ClientEntity) session.getAttribute("cliente");
+        System.out.println("Cliente from session: " + cliente); // add this line
+            model.addAttribute("cliente", cliente);
+            return "afterlogin";
+        }
+
+
+
+
+
 
     @RequestMapping ("/login")
     public ModelAndView login() {

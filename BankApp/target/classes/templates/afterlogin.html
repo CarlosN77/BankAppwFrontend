@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>After Login Page</title>
   <style>
@@ -11,7 +11,7 @@
     }
 
     header {
-      background-color: midnightblue;
+      background-color: darkslateblue;
       color: white;
       padding: 20px;
       text-align: center;
@@ -32,7 +32,7 @@
     }
 
     h2 {
-      color: midnightblue;
+      color: darkslateblue;
     }
 
     label {
@@ -51,7 +51,7 @@
     }
 
     button {
-      background-color: darkorange;
+      background-color: darksalmon;
       color: white;
       padding: 10px 20px;
       text-decoration: none;
@@ -69,7 +69,7 @@
     }
 
     footer {
-      background-color: midnightblue;
+      background-color: darkslateblue;
       color: white;
       padding: 10px;
       text-align: center;
@@ -77,30 +77,68 @@
       bottom: 0;
       width: 100%;
     }
+
+    /* Sidebar styles */
+    .sidebar {
+      height: 100%;
+      width: 200px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: darkslateblue;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+
+    /* Sidebar links */
+    .sidebar a {
+      display: block;
+      color: white;
+      padding: 16px;
+      text-decoration: none;
+    }
+
+    /* Active/current link */
+    .sidebar a.active {
+      background-color: darkslateblue;
+    }
+
+    /* Sidebar links on mouse-over */
+    .sidebar a:hover:not(.active) {
+      background-color: grey;
+    }
   </style>
 </head>
 <body>
+<div class="sidebar">
+  <a href="#">Ver Detalhes</a>
+  <a href="#">Ver Cartoes</a>
+  <a href="#">Ver Contas</a>
+  <a href="#">Pedir cartoes</a>
+  <a href="index.html">Logout</a>
+</div>
+
 <header>
   <h1>Rumos Bank</h1>
 </header>
+
 <main>
   <div id="welcome-message">
-    <h2>Welcome, John Doe!</h2>
+    <h1 style="color: black">Welcome, <span th:text="${cliente.primeironome} + ' ' + ${cliente.segundonome}"></span>!</h1>
   </div>
 
   <div id="user-details">
     <h2>User Details</h2>
+
     <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name" value="John Doe" readonly><br>
+    <input type="text" id="name" name="name" th:value="${cliente.primeironome} + ' ' + ${cliente.segundonome}" readonly><br>
     <label for="email">Email:</label><br>
-    <input type="text" id="email" name="email" value="john.doe@example.com" readonly><br>
-    <label for="balance">Account Balance:</label><br>
-    <input type="text" id="balance" name="balance" value="$10,000.00" readonly><br>
-    <label for="account-number">Account Number:</label><br>
-    <input type="text" id="account-number" name="account-number" value="123456789" readonly><br><br>
+    <input type="text" id="email" name="email" th:value="${cliente.email}" readonly><br>
     <button>Logout</button>
   </div>
 </main>
+
 <footer>
   <p>&copy; 2023 Rumos Bank</p>
 </footer>

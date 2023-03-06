@@ -46,11 +46,9 @@ public class Clientservice {
     }
 
     public ClientEntity login(Integer nif, String password) throws AuthenticationException {
-        ClientEntity cliente = clientRepository.findByNifAndPassword(nif, password);
-        if (cliente == null) {
-            throw new AuthenticationException("Invalid login credentials");
-        }
-        return cliente;
+         return clientRepository.findByNifAndPassword(nif, password);
+
+
     }
 
 }
