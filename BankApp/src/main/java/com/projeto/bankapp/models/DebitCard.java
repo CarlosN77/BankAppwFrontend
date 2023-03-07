@@ -13,8 +13,8 @@ public class DebitCard extends Cartao {
 
     private String tipo;
 
-    public DebitCard(ClientDTO clientDTO, Conta conta, int numerodecartao, String tipo) {
-        super(clientDTO, conta, numerodecartao);
+    public DebitCard(ClientDTO clientDTO, Account account, int numerodecartao, String tipo) {
+        super(clientDTO, account, numerodecartao);
         this.tipo = tipo;
     }
 

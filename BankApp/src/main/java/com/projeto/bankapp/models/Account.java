@@ -10,11 +10,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter
 @Getter
-public abstract class Cartao {
+public class Account {
 
-    private ClientDTO clientDTO;
-    private Account account;
-    public static int pin;
-    public int numerodecartao;
-
+    public int numerodeconta;
+    public ClientDTO titularPrincipal;
+    public double saldo;
 }

@@ -16,8 +16,8 @@ public class CreditCard extends Cartao {
 
     private double limite;
 
-    public CreditCard(ClientDTO clientDTO, Conta conta, int numerodecartao, double limite) {
-        super(clientDTO, conta, numerodecartao);
+    public CreditCard(ClientDTO clientDTO, Account account, int numerodecartao, double limite) {
+        super(clientDTO, account, numerodecartao);
         this.limite = limite;
     }
 
